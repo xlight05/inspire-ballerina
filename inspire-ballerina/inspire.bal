@@ -41,12 +41,11 @@ function main(string... args) {
     timer.start();
 
 
-    runtime:sleep(30000); // "Temp. workaround to stop the process from exiting." Really don't know what this is :(
+    runtime:sleep(30000); // "Temp. workaround to stop the process from exiting."
 
 
 }
 function getSubscriberData() returns error?{
-    io:println("In subs");
     var selectRet = testDB->select("SELECT * FROM subscribers",Subscriber);
     table<Subscriber> dt;
 
@@ -63,27 +62,20 @@ function getSubscriberData() returns error?{
 function sendQuotesToUsers(table <Subscriber> dt) returns error? {
     string message = getRandomInspireQuote();
     foreach row in dt {
-        io:println(row.id);
+        
+        if (sendTextMessage(row.phoneNumber,message)){
+            io:println("Sent");
+        }
+        else {
+            io:println("noooo");
+        }
     }
     return ();
 }
 
 
-//function cleanup() returns error? {
-//    count = count + 1;
-//    io:println("Cleaning up...");
-//    io:println(count);
-//
-//
-//    if (count >= 10) {
-//        timer.stop();
-//        io:println("Stopped timer");
-//    }
-//    return ();
-//}
-
 function cleanupError(error e) {
-    io:print("[ERROR] cleanup failed");
+    io:print("[ERROR] Error Occured");
     io:println(e);
 }
 

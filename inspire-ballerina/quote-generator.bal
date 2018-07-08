@@ -8,7 +8,7 @@ endpoint http:Client quoteEndpoint {
 
 
 
-function getRandomInspireQuote() returns string|error {
+function getRandomInspireQuote() returns string {
     http:Request req = new;
     req.addHeader("X-Mashape-Key","kEdPZDbPqVmshEdHZFVfT1Pgm0Y0p1tVQOHjsnpLRhpB0Cp4ZU");
 
@@ -18,20 +18,21 @@ function getRandomInspireQuote() returns string|error {
             var msg = resp.getJsonPayload();
             match msg {
                 json jsonPayload => {
-                    string resultMessage = jsonPayload["quote"].toString()+" ~"+jsonPayload["author"].toString();
+                    string resultMessage = jsonPayload["quote"].toString()+" -"+jsonPayload["author"].toString();
                     io:println(resultMessage);
                     return resultMessage;
                 }
                 error err => {
                     log:printError(err.message, err = err);
-                    return err;
+
                 }
             }
         }
         error err => { 
             log:printError(err.message, err = err);
-            return err;
+
         }
     }
+    return "err";
 }
 
