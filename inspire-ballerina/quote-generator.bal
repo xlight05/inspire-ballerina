@@ -1,6 +1,7 @@
 import ballerina/http;
 import ballerina/io;
 import ballerina/log;
+import ballerina/config;
 
 endpoint http:Client quoteEndpoint {
     url: "https://quotes.p.mashape.com"
@@ -10,7 +11,7 @@ endpoint http:Client quoteEndpoint {
 
 function getRandomInspireQuote() returns string {
     http:Request req = new;
-    req.addHeader("X-Mashape-Key","kEdPZDbPqVmshEdHZFVfT1Pgm0Y0p1tVQOHjsnpLRhpB0Cp4ZU");
+    req.addHeader("X-Mashape-Key",config:getAsString(X_MASHAPE_KEY));
 
     var response = quoteEndpoint->get("/?category=inspirational", message = req);
     match response {

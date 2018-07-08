@@ -9,7 +9,7 @@ endpoint twilio:Client twilioClient {
 };
 
 function sendTextMessage(string toMobile, string message) returns boolean {
-    string fromMobile = "+15097381025";
+    string fromMobile = config:getAsString(TWILIO_FROM_MOBILE);
     var details = twilioClient->sendSms(fromMobile, toMobile, message);
     match details {
         twilio:SmsResponse smsResponse => {

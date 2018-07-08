@@ -14,8 +14,8 @@ documentation { Constant field 'TWILIO_AUTH_TOKEN'. Holds the value of your oaut
 documentation { Constant field 'TWILIO_FROM_MOBILE'. Holds the value of your from mobile number}
 @final string TWILIO_FROM_MOBILE = "TWILIO_FROM_MOBILE";
 
-documentation { Constant field 'TWILIO_TO_MOBILE'. Holds the value of your to mobile number}
-@final string TWILIO_TO_MOBILE = "TWILIO_TO_MOBILE";
-
-documentation { Constant field 'TWILIO_MESSAGE'. Holds the value of your expected message to be sent}
-@final string TWILIO_MESSAGE = "TWILIO_MESSAGE";
+@final string X_MASHAPE_KEY = "X_MASHAPE_KEY";
+@final string MYSQL_HOST = "MYSQL_HOST";
+@final string MYSQL_USER = "MYSQL_USER";
+@final string MYSQL_PASS = "MYSQL_PASS";
+@final string MYSQL_DB_NAME = "MYSQL_DB_NAME";
