@@ -61,7 +61,7 @@ function getSubscriberData() returns error?{
 }
 
 function sendQuotesToUsers(table <Subscriber> dt) returns error? {
-    string message =
+    string message = getRandomInspireQuote();
     foreach row in dt {
         io:println(row.id);
     }
