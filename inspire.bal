@@ -61,6 +61,7 @@ function getSubscriberData() returns error?{
 }
 
 function sendQuotesToUsers(table <Subscriber> dt) returns error? {
+    string message =
     foreach row in dt {
         io:println(row.id);
     }

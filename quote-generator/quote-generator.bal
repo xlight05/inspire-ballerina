@@ -6,8 +6,9 @@ endpoint http:Client quoteEndpoint {
     url: "https://quotes.p.mashape.com"
 };
 
-function main(string... args) {
 
+
+function getRandomInspireQuote() returns string|error {
     http:Request req = new;
     req.addHeader("X-Mashape-Key","kEdPZDbPqVmshEdHZFVfT1Pgm0Y0p1tVQOHjsnpLRhpB0Cp4ZU");
 
@@ -17,14 +18,20 @@ function main(string... args) {
             var msg = resp.getJsonPayload();
             match msg {
                 json jsonPayload => {
-                    string resultMessage = jsonPayload["quote"].toString();
+                    string resultMessage = jsonPayload["quote"].toString()+" ~"+jsonPayload["author"].toString();
                     io:println(resultMessage);
+                    return resultMessage;
                 }
                 error err => {
                     log:printError(err.message, err = err);
+                    return err;
                 }
             }
         }
-        error err => { log:printError(err.message, err = err); }
+        error err => { 
+            log:printError(err.message, err = err);
+            return err;
+        }
     }
 }
+

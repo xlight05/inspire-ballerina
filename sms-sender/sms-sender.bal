@@ -8,7 +8,8 @@ endpoint twilio:Client twilioClient {
     authToken: config:getAsString(TWILIO_AUTH_TOKEN)
 };
 
-function sendTextMessage(string fromMobile, string toMobile, string message) returns boolean {
+function sendTextMessage(string toMobile, string message) returns boolean {
+    string fromMobile = "+15097381025";
     var details = twilioClient->sendSms(fromMobile, toMobile, message);
     match details {
         twilio:SmsResponse smsResponse => {
@@ -25,8 +26,3 @@ function sendTextMessage(string fromMobile, string toMobile, string message) ret
     return false;
 }
 
-
-function main(string... args) {
-
-    boolean x = sendTextMessage("+15097381025","+94768713516","Hello from Inspire Ballerina");
-}
