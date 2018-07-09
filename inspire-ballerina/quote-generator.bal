@@ -9,7 +9,7 @@ endpoint http:Client quoteEndpoint {
 
 
 
-function getRandomInspireQuote() returns string {
+function getQuote() returns string {
     http:Request req = new;
     req.addHeader("X-Mashape-Key",config:getAsString(X_MASHAPE_KEY));
 
@@ -35,5 +35,14 @@ function getRandomInspireQuote() returns string {
         }
     }
     return "err";
+}
+
+function getRandomInspireQuote() returns string{
+    string resultMessage;
+    resultMessage= getQuote();
+    while (resultMessage.length()>160) {
+        resultMessage = getQuote();
+    }
+    return resultMessage;
 }
 
